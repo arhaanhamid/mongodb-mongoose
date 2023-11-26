@@ -66,6 +66,22 @@ router.get("/is-mongoose-ok", function (req, res) {
 
 const Person = require("./myApp.js").PersonModel;
 
+router.post("/create-and-save-person", async function (req, res, next) {
+  try {
+    const aruu = new Person({
+      name: "TestPerson",
+      age: 25,
+      favoriteFoods: ["TestFood"],
+    });
+
+    const savedPerson = await aruu.save();
+    res.json(savedPerson);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
 router.use(function (req, res, next) {
   if (req.method !== "OPTIONS" && Person.modelName !== "Person") {
     return next({ message: "Person Model is not correct" });
