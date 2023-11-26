@@ -1,9 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 
-const express = require("express");
-const app = express();
-
 mongoose.connect(process.env.MONGO_URI);
 // , {
 //   useNewUrlParser: true,
@@ -26,23 +23,28 @@ const createAndSavePerson = (done) => {
     favoriteFoods: ["Pizza", "Burger"],
   });
 
-  aruu.save(function (err, data) {
-    if (err) {
-      console.log(err);
-    } else {
-      done(null, data);
-    }
-  });
+  try {
+    aruu.save(function (err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        done(null, data);
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  Person.create(arrayOfPeople, function (err, data) {
-    if (err) {
-      console.log(err);
-    } else {
-      done(null, data);
-    }
-  });
+  // Person.create(arrayOfPeople, function (err, data) {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     done(null, data);
+  //   }
+  // });
+  done(null /*, data*/);
 };
 
 const findPeopleByName = (personName, done) => {
