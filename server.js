@@ -98,29 +98,29 @@ router.post("/mongoose-model", function (req, res, next) {
 });
 
 const createPerson = require("./myApp.js").createAndSavePerson;
-router.get("/create-and-save-person", function (req, res, next) {
-  // in case of incorrect function use wait timeout then respond
-  let t = setTimeout(() => {
-    next({ message: "timeout" });
-  }, TIMEOUT);
-  createPerson(function (err, data) {
-    clearTimeout(t);
-    if (err) {
-      return next(err);
-    }
-    if (!data) {
-      console.log("Missing `done()` argument");
-      return next({ message: "Missing callback argument" });
-    }
-    Person.findById(data._id, function (err, pers) {
-      if (err) {
-        return next(err);
-      }
-      res.json(pers);
-      pers.remove();
-    });
-  });
-});
+// router.get("/create-and-save-person", function (req, res, next) {
+//   // in case of incorrect function use wait timeout then respond
+//   let t = setTimeout(() => {
+//     next({ message: "timeout" });
+//   }, TIMEOUT);
+//   createPerson(function (err, data) {
+//     clearTimeout(t);
+//     if (err) {
+//       return next(err);
+//     }
+//     if (!data) {
+//       console.log("Missing `done()` argument");
+//       return next({ message: "Missing callback argument" });
+//     }
+//     Person.findById(data._id, function (err, pers) {
+//       if (err) {
+//         return next(err);
+//       }
+//       res.json(pers);
+//       pers.remove();
+//     });
+//   });
+// });
 
 const createPeople = require("./myApp.js").createManyPeople;
 router.get("/create-many-people", function (req, res, next) {
