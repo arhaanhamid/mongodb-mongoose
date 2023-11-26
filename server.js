@@ -82,45 +82,27 @@ router.post("/mongoose-model", function (req, res, next) {
 });
 
 const createPerson = require("./myApp.js").createAndSavePerson;
-// router.get("/create-and-save-person", function (req, res, next) {
-//   // in case of incorrect function use wait timeout then respond
-//   let t = setTimeout(() => {
-//     next({ message: "timeout" });
-//   }, TIMEOUT);
-//   createPerson(function (err, data) {
-//     clearTimeout(t);
-//     if (err) {
-//       return next(err);
-//     }
-//     if (!data) {
-//       console.log("Missing `done()` argument");
-//       return next({ message: "Missing callback argument" });
-//     }
-//     Person.findById(data._id, function (err, pers) {
-//       if (err) {
-//         return next(err);
-//       }
-//       res.json(pers);
-//       pers.remove();
-//     });
-//   });
-// });
-
-router.post("/create-and-save-person", function (req, res, next) {
+router.get("/create-and-save-person", function (req, res, next) {
   // in case of incorrect function use wait timeout then respond
   let t = setTimeout(() => {
     next({ message: "timeout" });
   }, TIMEOUT);
-
-  // Use createAndSavePerson function to add a new person to the database
-  createAndSavePerson(function (err, data) {
+  createPerson(function (err, data) {
     clearTimeout(t);
     if (err) {
       return next(err);
     }
-
-    // Respond with the created person data
-    res.json(data);
+    if (!data) {
+      console.log("Missing `done()` argument");
+      return next({ message: "Missing callback argument" });
+    }
+    Person.findById(data._id, function (err, pers) {
+      if (err) {
+        return next(err);
+      }
+      res.json(pers);
+      pers.remove();
+    });
   });
 });
 
