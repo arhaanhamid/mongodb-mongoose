@@ -374,6 +374,7 @@ router.post("/query-tools", function (req, res, next) {
       return next(err);
     }
     Person.create(req.body, function (err, pers) {
+      console.log(req.body);
       if (err) {
         return next(err);
       }
