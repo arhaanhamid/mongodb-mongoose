@@ -131,7 +131,6 @@ router.get("/create-many-people", function (req, res, next) {
           return next(err);
         }
         res.json(pers);
-        // Person.remove().exec();
       });
     });
   });
