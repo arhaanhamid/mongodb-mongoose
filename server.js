@@ -374,7 +374,6 @@ router.post("/query-tools", function (req, res, next) {
       return next(err);
     }
     Person.create(req.body, function (err, pers) {
-      console.log(req.body);
       if (err) {
         return next(err);
       }
@@ -389,7 +388,6 @@ router.post("/query-tools", function (req, res, next) {
             return next({ message: "Missing callback argument" });
           }
           res.json(data);
-          console.log(data);
         });
       } catch (e) {
         console.log(e);
