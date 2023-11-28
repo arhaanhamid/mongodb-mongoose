@@ -84,7 +84,9 @@ router.post("/mongoose-model", function (req, res, next) {
 const createPerson = require("./myApp.js").createAndSavePerson;
 router.get("/create-and-save-person", function (req, res, next) {
   // in case of incorrect function use wait timeout then respond
+  console.log("bacdsg");
   res.send("ABCD");
+  next();
   // let t = setTimeout(() => {
   //   next({ message: "timeout" });
   // }, TIMEOUT);
