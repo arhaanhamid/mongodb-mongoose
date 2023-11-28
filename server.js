@@ -101,13 +101,13 @@ router.get("/create-and-save-person", function (req, res, next) {
         return next(err);
       }
       res.json(pers);
-      // pers.remove();
+      pers.remove();
     });
   });
 });
 
 const createPeople = require("./myApp.js").createManyPeople;
-router.get("/create-many-people", function (req, res, next) {
+router.post("/create-many-people", function (req, res, next) {
   Person.remove({}, function (err) {
     if (err) {
       return next(err);
@@ -130,7 +130,7 @@ router.get("/create-many-people", function (req, res, next) {
           return next(err);
         }
         res.json(pers);
-        // Person.remove().exec();
+        Person.remove().exec();
       });
     });
   });
