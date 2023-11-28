@@ -107,7 +107,7 @@ router.get("/create-and-save-person", function (req, res, next) {
 });
 
 const createPeople = require("./myApp.js").createManyPeople;
-router.get("/create-many-people", function (req, res, next) {
+router.post("/create-many-people", function (req, res, next) {
   Person.remove({}, function (err) {
     if (err) {
       return next(err);
@@ -116,7 +116,7 @@ router.get("/create-many-people", function (req, res, next) {
     let t = setTimeout(() => {
       next({ message: "timeout" });
     }, TIMEOUT);
-    createPeople(function (err, data) {
+    createPeople(req.body, function (err, data) {
       clearTimeout(t);
       if (err) {
         return next(err);
