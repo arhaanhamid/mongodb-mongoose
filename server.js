@@ -98,13 +98,14 @@ router.get("/create-and-save-person", function (req, res, next) {
     }
     console.log("indside server");
     console.log(data);
-    Person.findById(data._id, function (err, pers) {
-      if (err) {
-        return next(err);
-      }
-      res.json(pers);
-      // pers.remove();
-    });
+    Person.findById(data._id)
+      .then((pers) => {
+        res.json(pers);
+        // pers.remove(); // You may choose to remove the document here if needed
+      })
+      .catch((err) => {
+        next(err);
+      });
   });
 });
 
