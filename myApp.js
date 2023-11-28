@@ -110,15 +110,15 @@ const removeManyPeople = (done) => {
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
-  Person.find({ favoriteFoods: foodToSearch }, function (err, data) {
+  Person.find({ favoriteFoods: foodToSearch }, function (err, persons) {
     if (err) console.log(err);
-    data.sort(function (err, data) {
+    persons.sort(function (err, pSort) {
       if (err) console.log(err);
-      data.limit(2, function (err, data) {
+      pSort.limit(2, function (err, psLimit) {
         if (err) console.log(err);
-        data.select(-age, function (err, data) {
+        psLimit.select(-age, function (err, pslSelect) {
           if (err) console.log(err);
-          data.exec(function (err, data) {
+          pslSelect.exec(function (err, data) {
             if (err) console.log(err);
             done(null, data);
           });
