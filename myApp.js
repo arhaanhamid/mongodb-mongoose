@@ -37,8 +37,8 @@ const createAndSavePerson = (done) => {
   });
 };
 
-const createManyPeople = (arrayOfPeople, done) => {
-  arrayOfPeople = [
+const createManyPeople = (done) => {
+  let arrayOfPeople = [
     {
       name: "aruu",
       age: 10,
