@@ -96,8 +96,6 @@ router.get("/create-and-save-person", function (req, res, next) {
       console.log("Missing `done()` argument");
       return next({ message: "Missing callback argument" });
     }
-    console.log("indside server");
-    console.log(data);
     Person.findById(data._id)
       .then((pers) => {
         res.json(pers);
