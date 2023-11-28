@@ -32,7 +32,17 @@ const createAndSavePerson = (done) => {
   });
 
   console.log("Variable starts...");
-  aruu.save();
+  aruu
+    .save()
+    .then((data) => {
+      console.log("Saved");
+      console.log(data);
+      done(null, data);
+    })
+    .catch((err) => {
+      console.error(err);
+      done(err);
+    });
 };
 createAndSavePerson();
 
