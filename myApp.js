@@ -31,10 +31,7 @@ const createAndSavePerson = (done) => {
     favoriteFoods: ["Pizza", "Burger"],
   });
 
-  aruu.save(function (err, data) {
-    if (err) return console.log(err);
-    done(null, data);
-  });
+  aruu.save();
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
