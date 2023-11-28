@@ -2,10 +2,6 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGO_URI);
-// , {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// }
 
 mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB Atlas");
@@ -14,6 +10,7 @@ mongoose.connection.on("connected", () => {
 mongoose.connection.on("error", (err) => {
   console.error("MongoDB connection error:", err);
 });
+
 let Person;
 
 const personSchema = new mongoose.Schema({
@@ -23,21 +20,21 @@ const personSchema = new mongoose.Schema({
 });
 
 Person = mongoose.model("Person", personSchema);
+
 const createAndSavePerson = (done) => {
-  const aruu = new Person({
-    name: "Burrii",
-    age: 45,
+  const arhaan = new Person({
+    name: "Arhaan",
+    age: 21,
     favoriteFoods: ["Pizza", "Burger"],
   });
 
-  aruu
-    .save()
-    .then((data) => {
+  aruu.save(function (err, data) {
+    if (err) {
+      console.log(err);
+    } else {
       done(null, data);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+    }
+  });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
@@ -58,20 +55,17 @@ const createManyPeople = (arrayOfPeople, done) => {
       favoriteFoods: ["Pizza", "Burger"],
     },
   ];
-  Person.create(arrayOfPeople)
-    .then((data) => {
+  Person.create(arrayOfPeople, function (err, data) {
+    if (err) {
+      console.log(err);
+    } else {
       done(null, data);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+    }
+  });
 };
 
 const findPeopleByName = (personName, done) => {
-  Person.find(personName, function (err, data) {
-    if (err) return console.log(err);
-    done(null, data);
-  });
+  done(null /*, data*/);
 };
 
 const findOneByFood = (food, done) => {
