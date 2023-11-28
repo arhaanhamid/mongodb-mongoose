@@ -30,14 +30,10 @@ const createAndSavePerson = (done) => {
     favoriteFoods: ["Pizza", "Burger"],
   });
 
-  aruu
-    .save()
-    .then((data) => {
-      done(null, data);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  aruu.save(function (err, data) {
+    if (err) console.error(err);
+    done(null, data);
+  });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
@@ -58,13 +54,10 @@ const createManyPeople = (arrayOfPeople, done) => {
       favoriteFoods: ["Pizza", "Burger"],
     },
   ];
-  Person.create(arrayOfPeople)
-    .then((data) => {
-      done(null, data);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  Person.create(arrayOfPeople, function (err, data) {
+    if (err) console.error(err);
+    done(null, data);
+  });
 };
 
 const findPeopleByName = (personName, done) => {
@@ -72,13 +65,6 @@ const findPeopleByName = (personName, done) => {
     if (err) return console.log(err);
     done(null, data);
   });
-  // Person.find(personName)
-  //   .then((data) => {
-  //     done(null, data);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //   });
 };
 
 const findOneByFood = (food, done) => {
