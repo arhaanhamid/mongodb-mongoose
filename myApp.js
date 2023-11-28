@@ -24,6 +24,7 @@ const personSchema = new mongoose.Schema({
 
 Person = mongoose.model("Person", personSchema);
 
+console.log("Before varible starts...");
 const createAndSavePerson = (done) => {
   const aruu = new Person({
     name: "Arhaan",
@@ -31,6 +32,7 @@ const createAndSavePerson = (done) => {
     favoriteFoods: ["Pizza", "Burger"],
   });
 
+  console.log("Variable starts...");
   aruu.save(function (err, data) {
     if (err) return console.log(err);
     console.log("Saved");
