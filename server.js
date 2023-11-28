@@ -154,7 +154,6 @@ router.post("/find-all-by-name", function (req, res, next) {
         console.log("Missing `done()` argument");
         return next({ message: "Missing callback argument" });
       }
-      console.log(data);
       res.json(data);
       // Person.remove().exec();
     });
@@ -180,6 +179,7 @@ router.post("/find-one-by-food", function (req, res, next) {
         console.log("Missing `done()` argument");
         return next({ message: "Missing callback argument" });
       }
+      console.log(data);
       res.json(data);
       p.remove();
     });
