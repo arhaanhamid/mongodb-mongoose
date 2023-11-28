@@ -116,7 +116,7 @@ router.post("/create-many-people", function (req, res, next) {
     let t = setTimeout(() => {
       next({ message: "timeout" });
     }, TIMEOUT);
-    createPeople(req.body, function (err, data) {
+    createPeople(function (err, data) {
       clearTimeout(t);
       if (err) {
         return next(err);
