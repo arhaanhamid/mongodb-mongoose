@@ -38,6 +38,7 @@ const createAndSavePerson = (done) => {
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
+  arrayOfPeople = arrayOfPeople.pop();
   arrayOfPeople.push({
     name: "aruu",
     age: 10,
