@@ -28,7 +28,7 @@ const createAndSavePerson = (done) => {
     favoriteFoods: ["Pizza", "Burger"],
   });
 
-  aruu.save(function (err, data) {
+  arhaan.save(function (err, data) {
     if (err) {
       console.log(err);
     } else {
