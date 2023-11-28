@@ -236,7 +236,6 @@ router.post("/find-edit-save", function (req, res, next) {
         p.remove();
       });
     } catch (e) {
-      console.log(e);
       return next(e);
     }
   });
@@ -263,10 +262,10 @@ router.post("/find-one-update", function (req, res, next) {
           return next({ message: "Missing callback argument" });
         }
         res.json(data);
+        console.log(e);
         p.remove();
       });
     } catch (e) {
-      console.log(e);
       return next(e);
     }
   });
