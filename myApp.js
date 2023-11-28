@@ -110,6 +110,22 @@ const removeManyPeople = (done) => {
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
+  Person.find({ favoriteFoods: foodToSearch }, function (err, data) {
+    if (err) console.log(err);
+    data.sort(function (err, data) {
+      if (err) console.log(err);
+      data.limit(2, function (err, data) {
+        if (err) console.log(err);
+        data.select(-age, function (err, data) {
+          if (err) console.log(err);
+          data.exec(function (err, data) {
+            if (err) console.log(err);
+            done(null, data);
+          });
+        });
+      });
+    });
+  });
 
   done(null /*, data*/);
 };

@@ -323,7 +323,6 @@ router.post("/remove-many-people", function (req, res, next) {
       next({ message: "timeout" });
     }, TIMEOUT);
     Person.create(req.body, function (err, pers) {
-      console.log(req.body);
       if (err) {
         return next(err);
       }
@@ -351,11 +350,6 @@ router.post("/remove-many-people", function (req, res, next) {
               }
             }
             res.json({
-              n: data.n,
-              count: cnt,
-              ok: data.ok,
-            });
-            console.log({
               n: data.n,
               count: cnt,
               ok: data.ok,
@@ -394,6 +388,7 @@ router.post("/query-tools", function (req, res, next) {
             return next({ message: "Missing callback argument" });
           }
           res.json(data);
+          console.log(data);
         });
       } catch (e) {
         console.log(e);
