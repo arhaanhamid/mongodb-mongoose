@@ -23,7 +23,7 @@ const personSchema = new mongoose.Schema({
 });
 
 Person = mongoose.model("Person", personSchema);
-
+createAndSavePerson();
 console.log("Before varible starts...");
 const createAndSavePerson = (done) => {
   const aruu = new Person({
