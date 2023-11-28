@@ -58,19 +58,23 @@ const createManyPeople = (arrayOfPeople, done) => {
       favoriteFoods: ["Pizza", "Burger"],
     },
   ];
-  Person.create(arrayOfPeople, function (err, data) {
-    if (err) {
-      console.log(err);
-    }
-    done(null, data);
-  });
+  Person.create(arrayOfPeople)
+    .then((data) => {
+      done(null, data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 const findPeopleByName = (personName, done) => {
-  Person.find(personName, function (err, data) {
-    if (err) console.log(err);
-    done(null, data);
-  });
+  Person.find(personName)
+    .then((data) => {
+      done(null, data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 const findOneByFood = (food, done) => {
