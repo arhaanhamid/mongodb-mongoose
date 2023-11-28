@@ -88,16 +88,16 @@ const findAndUpdate = (personName, done) => {
     function (err, data) {
       if (err) console.log(err);
       data.age = ageToSet;
-      // data.save(function (err, data) {
-      //   if (err) console.log(err);
-      // });
       done(null, data);
     }
   );
 };
 
 const removeById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findByIdAndRemove(personId, function (err, data) {
+    if (err) console.log(err);
+    done(null, data);
+  });
 };
 
 const removeManyPeople = (done) => {
